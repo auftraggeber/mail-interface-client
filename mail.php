@@ -38,6 +38,7 @@ class Mail {
     private ?array $bcc = null;
     private ?array $attachments = null;
     private ?bool $is_html = null;
+    private ?string $charset = null;
 
     public function __construct(string $from, array $to) {
         $this->from = $from;
@@ -75,6 +76,10 @@ class Mail {
         $this->is_html = $is_html;
     }
 
+    public function setCharset(string $charset): void {
+        $this->charset = $charset;
+    }
+
     private function buildPostParams(MailSettingsManager $mailSettingsManager): array {
         $post = $mailSettingsManager->getStaticSettings();
 
@@ -107,6 +112,9 @@ class Mail {
         if ($this->is_html !== null) {
             $post['body_is_html'] = $this->is_html ? "1" : "0";
         }
+        if ($this->charset !== null) {
+            $post['charset'] = $this->charset;
+        }
         
         return $post;
     }
@@ -118,6 +126,7 @@ class Mail {
 
         curl_setopt($curl, CURLOPT_URL, $manager->getApiUrl());
         curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $this->buildPostParams($manager));
 
         $ret = curl_exec($curl);
