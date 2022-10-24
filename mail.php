@@ -37,6 +37,7 @@ class Mail {
     private ?array $cc = null;
     private ?array $bcc = null;
     private ?array $attachments = null;
+    private ?bool $is_html = null;
 
     public function __construct(string $from, array $to) {
         $this->from = $from;
@@ -70,6 +71,10 @@ class Mail {
         $this->attachments = $attachments;
     }
 
+    public function setIsHTML(bool $is_html): void {
+        $this->is_html = $is_html;
+    }
+
     private function buildPostParams(MailSettingsManager $mailSettingsManager): array {
         $post = $mailSettingsManager->getStaticSettings();
 
@@ -98,6 +103,9 @@ class Mail {
                 $post['file_name_' . $i] = $name;
                 $i += 1;
             }
+        }
+        if ($this->is_html !== null) {
+            $post['body_is_html'] = $this->is_html ? "1" : "0";
         }
         
         return $post;
