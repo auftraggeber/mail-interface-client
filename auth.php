@@ -1,6 +1,12 @@
 <?php
 namespace de\langner_dev\mail;
 
+/**
+ * The AuthManager provides the auth key.
+ * @author Jonas Langner
+ * @version 0.1.1
+ * @since 12.10.2023
+ */
 abstract class IAuthManager {
     private static ?IAuthManager $shared = null;
 
