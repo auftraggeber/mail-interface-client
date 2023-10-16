@@ -125,7 +125,7 @@ class Mail {
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, $manager->getApiUrl());
-        curl_setopt($curl, CURLOPT_HTTPHEADER, [IAuthManager::shared()->getAuthHeaderName() => IAuthManager::shared()->getAuthKey()]);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, [IAuthManager::shared()->getAuthHeaderName() .": ". IAuthManager::shared()->getAuthKey()]);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $this->buildPostParams($manager));
