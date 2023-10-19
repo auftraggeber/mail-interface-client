@@ -1,0 +1,13 @@
+{
+    "name": "auftraggeber/php-mail-interface-client",
+    "description": "Lib to send mails via http request.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonas Eddy Langner",
+            "email": "Jonas.Langner.kuz@fh-zwickau.de"
+        }
+    ],
+    "require": {}
+}
