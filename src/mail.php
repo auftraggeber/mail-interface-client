@@ -25,8 +25,6 @@ SOFTWARE.
  
 namespace de\langner_dev\mail;
 
-require_once 'auth.php';
-
 class Mail {
 
     private ?string $subject = null;

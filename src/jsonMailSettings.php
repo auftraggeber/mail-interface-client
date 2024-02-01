@@ -33,8 +33,6 @@ SOFTWARE.
 use de\langner_dev\mail\MailSettings;
 use de\langner_dev\mail\MailSettingsManager;
 
-require_once 'mailSettings.php';
-
 class JSONMailSettings implements MailSettings {
 
     private string $jsonPath;
@@ -66,4 +64,4 @@ class JSONMailSettings implements MailSettings {
 
 }
 
-MailSettingsManager::shared()->setMailSettings(new JSONMailSettings('mailSettings.json'));
+MailSettingsManager::shared()->setMailSettings(new JSONMailSettings('../mailSettings.json'));
