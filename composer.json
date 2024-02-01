@@ -9,5 +9,8 @@
             "email": "Jonas.Langner.kuz@fh-zwickau.de"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "classmap": ["src/"]
+    }
 }
