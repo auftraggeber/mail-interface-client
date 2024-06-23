@@ -39,6 +39,8 @@ class Mail {
     private ?array $attachments = null;
     private ?bool $is_html = null;
     private ?string $charset = null;
+    private ?string $user = null;
+    private ?string $password = null;
 
     public function __construct(string $from, array $to) {
         $this->from = $from;
@@ -63,6 +65,14 @@ class Mail {
 
     public function setBCC(array $bcc): void {
         $this->bcc = $bcc;
+    }
+
+    public function setUser(string $user): void {
+        $this->user = $user;
+    }
+
+    public function setPassword(string $password): void {
+        $this->password = $password;
     }
 
     /**
@@ -114,6 +124,12 @@ class Mail {
         }
         if ($this->charset !== null) {
             $post['charset'] = $this->charset;
+        }
+        if ($this->user !== null) {
+            $post['user'] = $this->user;
+        }
+        if ($this->password !== null) {
+            $post['password'] = $this->password;
         }
         
         return $post;
